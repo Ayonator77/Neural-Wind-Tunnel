@@ -72,7 +72,7 @@ int main(int argc, char* argv[]) {
         ImGui_ImplSDL2_NewFrame();
         ImGui::NewFrame();
 
-        // --- UI DEFINITION ---
+        //  UI DEFINITION 
         // Dockspace
         ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
 
@@ -91,7 +91,7 @@ int main(int argc, char* argv[]) {
         ImGui::Begin("3D Viewport");
         ImGui::Text("OpenGL Render Target will go here...");
         ImGui::End();
-        // ---------------------
+        // 
 
         // Rendering
         ImGui::Render();
