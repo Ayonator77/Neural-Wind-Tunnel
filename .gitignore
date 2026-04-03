@@ -1,0 +1,14 @@
+# C++ Build artifacts
+build/
+out/
+.vs/
+.cache/
+
+# vcpkg dependencies
+vcpkg_installed/
+
+# Python / Machine Learning
+ml/__pycache__/
+ml/*.pth
+ml/*.onnx
+.conda/

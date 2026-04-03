@@ -1,0 +1,13 @@
+{
+  "name": "neural-wind-tunnel",
+  "version-string": "0.1.0",
+  "description": "PINN Fluid Dynamics Surrogate Engine",
+  "dependencies": [
+    "sdl2",
+    "glad",
+    "glm",
+    "spdlog",
+    "gtest",
+    "onnxruntime"
+  ]
+}

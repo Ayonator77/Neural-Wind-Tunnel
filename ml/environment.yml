@@ -1,0 +1,21 @@
+name: pinn-env
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+
+dependencies:
+  - python=3.10
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda = 11.8
+  - matplotlib
+  - numpy
+  - scipy
+  - scikit-learn
+  - pandas
+  - pyvista
+  - onnx
+  - pip:
+    - onnxruntime
