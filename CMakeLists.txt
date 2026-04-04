@@ -49,13 +49,12 @@ target_link_libraries(imgui_docking PUBLIC SDL2::SDL2 glad::glad)
 # Engine Core Library
 # ---------------------------------------------------------
 add_library(engine_core
-    # We will add your core engine files here as we build them out
-    # e.g., src/core/Application.cpp, src/inference/PinnModel.cpp
-    engine/src/main.cpp # Temporary: Just to satisfy CMake until we split it
+    engine/src/core/Application.cpp
+    engine/src/ui/Editor.cpp
 )
 
 target_include_directories(engine_core PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/engine/include
 )
 
 target_link_libraries(engine_core PUBLIC
