@@ -33,7 +33,7 @@ class WindTunnelDomain:
 
         # Filter out points inside the spherical obstacle
         distances = torch.sqrt((x - self.obs_c[0])**2 + (y - self.obs_c[1])**2 + (z - self.obs_c[2])**2)
-        mask = distances > self.obs_r
+        mask = (distances > self.obs_r).squeeze()
         
         #Apply the mask to keep exactly $N$ points
         x, y, z, t = x[mask][:N], y[mask][:N], z[mask][:N], t[mask][:N]
