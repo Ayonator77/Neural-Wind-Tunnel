@@ -5,7 +5,7 @@ from dataset import WindTunnelDomain
 
 #Hyperparamters
 NU = 0.01 # Kinematic viscosity
-EPOCHS = 1000
+EPOCHS = 10
 BATCH_SIZE_INTERIOR = 4000
 BATCH_SIZE_BOUNDARY = 1000
 
@@ -120,6 +120,33 @@ def boundary_loss(model, domain):
     
     return loss_inlet + loss_obs
 
+
+def export_to_onnx(model, filename="pinn_fluid.onnx"):
+    """
+    Exports the trained model to ONNX format for deployment.
+    """
+    print(f"Exporting model to {filename}...")
+    device = next(model.parameters()).device
+
+    #Create a dummy input tensor: shape (batch_size) -> (x, y, z, t)
+    #Use batch size 1 here, but dynamic_axes makes it flexible later
+    dummy_input = torch.randn(1, 4).to(device)
+    torch.onnx.export(
+        model, 
+        dummy_input, 
+        filename,
+        export_params=True,
+        opset_version=14,          # Standard, stable opset for C++ ONNX Runtime
+        do_constant_folding=True,  # Optimizes constant operations for faster inference
+        input_names=['input_coords'],
+        output_names=['fluid_preds'],
+        dynamic_axes={
+            'input_coords': {0: 'batch_size'}, # Allow varying number of input points
+            'fluid_preds': {0: 'batch_size'}   # Allow varying number of output predictions
+        }
+    )
+    print("ONNX Export complete!")
+
 def train():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Training on {device}")
@@ -148,8 +175,8 @@ def train():
             print(f"Epoch {epoch}/{EPOCHS} | PDE Loss: {l_pde.item():.6f} | BC Loss: {l_bc.item():.6f}")
 
     print("Training complete!")
-    # TODO add the ONNX export logic here later
     torch.save(model.state_dict(), "pinn_fluid.pth")
+    export_to_onnx(model)
 
 
 if __name__ == "__main__":
