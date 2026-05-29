@@ -5,7 +5,7 @@ from dataset import WindTunnelDomain
 
 #Hyperparamters
 NU = 0.01 # Kinematic viscosity
-EPOCHS = 10
+EPOCHS = 5000
 BATCH_SIZE_INTERIOR = 4000
 BATCH_SIZE_BOUNDARY = 1000
 

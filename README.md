@@ -405,7 +405,7 @@ cmake --build build/ninja
 - [x] Domain sampling with obstacle rejection
 - [x] Inlet + no-slip boundary conditions
 - [x] C++ engine scaffold (SDL2 + OpenGL 4.3 + ImGui docking)
-- [ ] ONNX export from PyTorch
+- [x] ONNX export from PyTorch
 - [ ] ONNX Runtime inference integration in C++ engine
 - [ ] Volume rendering of velocity/pressure fields
 - [ ] Streamline / particle advection visualization

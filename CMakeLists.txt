@@ -51,6 +51,7 @@ target_link_libraries(imgui_docking PUBLIC SDL2::SDL2 glad::glad)
 add_library(engine_core
     engine/src/core/Application.cpp
     engine/src/ui/Editor.cpp
+    engine/src/core/Simulation.cpp
 )
 
 target_include_directories(engine_core PUBLIC
